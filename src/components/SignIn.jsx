@@ -21,7 +21,7 @@ const SignIn = () => {
                 const lastSignInTime = result?.user?.metadata?.lastSignInTime;
                 const loginInfo = { email, lastSignInTime }
             
-                fetch(`http://localhost:5000/users/${email}`, {
+                fetch(`https://coffee-store-server-fawn-iota.vercel.app/users/${email}`, {
                     method: 'patch',
                     headers: {
                         'content-type': 'application/json'
@@ -91,7 +91,7 @@ const SignIn = () => {
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign In</button>
                         </div>
-                        <p>New to coffee drinker:<Link to="/signUp"></Link>Sign Up</p>
+                        <p>New to coffee drinker:<Link to="/signUp"></Link>Sign Up or Register</p>
           </form>
         </div>
       </div>

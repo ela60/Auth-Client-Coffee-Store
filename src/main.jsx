@@ -1,20 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Layout from './components/Layout.jsx';
-import Home from './components/Home.jsx';
-import AddCoffee from './components/AddCoffee.jsx';
-import UpdateCoffee from './components/UpdateCoffee.jsx';
-import SignIn from './components/SignIn.jsx';
-import SignUp from './components/SignUp.jsx';
-import AuthProviders from './providers/AuthProviders.jsx';
-import Users from './components/Users.jsx';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
+import Home from "./components/Home.jsx";
+import AddCoffee from "./components/AddCoffee.jsx";
+import UpdateCoffee from "./components/UpdateCoffee.jsx";
+import SignIn from "./components/SignIn.jsx";
+import SignUp from "./components/SignUp.jsx";
+import AuthProviders from "./providers/AuthProviders.jsx";
+import Users from "./components/Users.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,40 +19,41 @@ const router = createBrowserRouter([
     element: <Layout></Layout>,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/coffee')
+        loader: () => fetch("https://coffee-store-server-fawn-iota.vercel.app/coffee"),
       },
       {
-        path: 'addCoffee',
-        element: <AddCoffee></AddCoffee>
+        path: "addCoffee",
+        element: <AddCoffee></AddCoffee>,
       },
       {
-        path: 'updateCoffee/:id',
+        path: "updateCoffee/:id",
         element: <UpdateCoffee></UpdateCoffee>,
-        loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`https://coffee-store-server-fawn-iota.vercel.app/coffee/${params.id}`),
       },
       {
-        path:'signin',
-        element:<SignIn/>
+        path: "signin",
+        element: <SignIn />,
       },
       {
-        path:'signup',
-        element:<SignUp/>
+        path: "signup",
+        element: <SignUp />,
       },
       {
-        path: 'users',
+        path: "users",
         element: <Users />,
-        loader:()=>fetch('http://localhost:5000/users')
-      }
-    ]
+        loader: () => fetch("https://coffee-store-server-fawn-iota.vercel.app/users"),
+      },
+    ],
   },
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProviders>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AuthProviders>
-  </StrictMode>,
-)
+  </StrictMode>
+);

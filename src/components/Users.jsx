@@ -27,7 +27,7 @@ const Users = () => {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://coffee-store-server-fawn-iota.vercel.app/users/${id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
@@ -38,7 +38,7 @@ const Users = () => {
                                 text: "Your Coffee has been deleted.",
                                 icon: "success"
                             });
-                            const remaining = users.filter(us => us._id != _id);
+                            const remaining = users.filter(us => us._id != id);
                             setUsers(remaining);
                         }
                     })
@@ -92,7 +92,7 @@ const Users = () => {
                 <th>1</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.createdAt}</td>
+                <td>{user.createAt}</td>
                 <td>{user.lastSignInTime}</td>
                 <td>
                   <button className="btn bg-slate-400 ">E</button>
